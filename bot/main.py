@@ -6,7 +6,6 @@ import logging
 import asyncio
 from aiogram.types import CallbackQuery as cq
 from texts import *
-from logic import *
 
 
 bot = Bot(token=token)
@@ -40,6 +39,15 @@ async def study_process(callback_query: cq):
         await bot.delete_message(chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id)
     
 
+@dp.callback_query(lambda callback_query: callback_query.data == 'main_corps' or callback_query.data == 'Назад')
+async def show_map(callback_query: cq):
+    await bot.send_message(callback_query.from_user.id, f'Первый корпус:\n улица Артёма, 9, Сургут, Ханты-Мансийский автономный округ, 628404\n')
+    await bot.send_location(callback_query.from_user.id, 61.255528, 73.402754)
+    await bot.send_message(callback_query.from_user.id, f'Второй корпус:\nулица 50 лет ВЛКСМ, 10/2, Сургут, Ханты-Мансийский автономный округ, 628417\n')
+    await bot.send_location(callback_query.from_user.id, 61.256918, 73.357482)
+
+
+
 """
 Обрабатывает сервис на основе обратного вызова.
 
@@ -70,8 +78,7 @@ async def process_service(callback_query: cq):
             break
         if callback_query.data in messages:
             markup, text = messages[callback_query.data]
-            message = await bot.send_message(callback_query.from_user.id, f"Для поступления на {selected_text}, необходимо {levels[selected_text]}\n{text}", reply_markup=markup)
-            messages_to_delete.append(message.message_id)
+            await bot.send_message(callback_query.from_user.id, f"Для поступления на {selected_text}, необходимо {levels[selected_text]}\n{text}", reply_markup=markup)
         elif callback_query.data == 'Назад':
             await bot.delete_message(chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id)
         elif callback_query.data in info_dict.keys():
@@ -82,8 +89,9 @@ async def process_service(callback_query: cq):
             if info:
                 if link:
                     # Отправка сообщения с информацией и добавление его идентификатора в список для последующего удаления
-                    info_message = await bot.send_message(callback_query.from_user.id, f"Вступительные испытания для поступления на {selected_text}:\n\n{info}\n\nБолее подробная информация на сайте: https://www.surgpu.ru/Abitur/{link}/", reply_markup=back_keyboard)
-                    messages_to_delete.append(info_message.message_id)
+                    await bot.send_message(callback_query.from_user.id, f"Вступительные испытания для поступления на {selected_text}:\n\n{info}\n\nБолее подробная информация на сайте: https://www.surgpu.ru/Abitur/{link}/", reply_markup=back_keyboard)
+                    
+
 
 async def main() -> None:
     bot = Bot(token=token,)
