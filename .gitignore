@@ -190,3 +190,4 @@ settings
 settings.py
 config.py
 functional
+dockerfile
