@@ -1,4 +1,4 @@
-from keyboards import directions_aspir, directions_bakalavr,directions_magistr
+from .keyboards import directions_aspir, directions_bakalavr,directions_magistr
 messages = {
     'Бакалавриат': (directions_bakalavr, "Выберите направление подготовки:"),
     'Магистратура': (directions_magistr, "Выберите направление подготовки:"),

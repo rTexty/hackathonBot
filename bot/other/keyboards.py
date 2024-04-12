@@ -6,10 +6,27 @@ main_keyboard = InlineKeyboardMarkup(
         InlineKeyboardButton(text='Хочу поступить', callback_data='std'),
         ],
         [
-        InlineKeyboardButton(text='Наши корпусы', callback_data='main_corps'),
+        InlineKeyboardButton(text='Частые вопросы ', callback_data='main_info'),
         ],
         [
-        InlineKeyboardButton(text='Частые вопросы ', callback_data='main_info'),
+        InlineKeyboardButton(text='Наши корпусы', callback_data='main_corps'),
+        ]
+    ]
+)
+
+faq_keyboard = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+        InlineKeyboardButton(text='Есть ли общежития?', callback_data='live_corps'),
+        ],
+        [
+        InlineKeyboardButton(text='Сколько корпусов?', callback_data='count_corps'),
+        ],
+        [
+        InlineKeyboardButton(text='Есть ли стипендия?', callback_data='stipendia'),
+        ],
+        [
+        InlineKeyboardButton(callback_data="Назад", text="Назад")
         ]
     ]
 )
