@@ -1,12 +1,12 @@
 from aiogram import Bot, Dispatcher
-from keyboards import levels_keyboard, back_keyboard
-from settings import token
+from bot.keyboards import levels_keyboard, back_keyboard
+from bot.config import token
 from aiogram.filters import CommandStart
 import logging
 import asyncio
 from aiogram.types import CallbackQuery as cq
-from texts import *
-from logic import *
+from bot.texts import *
+from bot.logic import *
 
 
 bot = Bot(token=token)
@@ -58,7 +58,7 @@ async def process_service(callback_query: cq):
     elif callback_query.data == 'Назад':
         # Удаление всех сообщений из списка
         await delete_messages(bot, callback_query.from_user.id)
-    elif callback_query.data in ["math_info", "math_physics", "mag_edu", "aspir_edu", "aspir_history"]:
+    elif callback_query.data in info_dict.keys():
         # Получение информации на основе выбранного ключа
         info = info_dict.get(callback_query.data)
         link = link_dict.get(callback_query.data)
