@@ -1,6 +1,18 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-
+main_keyboard = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+        InlineKeyboardButton(text='Хочу поступить', callback_data='std'),
+        ],
+        [
+        InlineKeyboardButton(text='Наши корпусы', callback_data='main_corps'),
+        ],
+        [
+        InlineKeyboardButton(text='Частые вопросы ', callback_data='main_info'),
+        ]
+    ]
+)
 
 
 back_keyboard = InlineKeyboardMarkup(
@@ -18,6 +30,9 @@ levels_keyboard = InlineKeyboardMarkup(
         [InlineKeyboardButton(text='Магистратура', callback_data='Магистратура')],
         [
         InlineKeyboardButton(text='Аспирантура', callback_data='Аспирантура'),
+        ],
+        [
+        InlineKeyboardButton(callback_data="Назад", text="Назад", )
         ]
     ]
 )
