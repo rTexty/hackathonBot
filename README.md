@@ -1,1 +1,2 @@
-# hackathonBot
+Команда TGDevelopers
+Кейс -- СурГПУ
